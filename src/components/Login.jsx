@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -59,9 +61,8 @@ function Login() {
         throw new Error(data.message || "Login failed");
       }
 
-      // Store user data in localStorage
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("token", data.token);
+      // Use AuthContext to store user data
+      login(data.user, data.token);
 
       navigate("/home");
     } catch (err) {

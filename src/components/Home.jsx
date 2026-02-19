@@ -1,32 +1,14 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Home() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // Check if user is logged in
-    const userData = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-
-    if (!userData || !token) {
-      navigate("/login");
-      return;
-    }
-
-    setUser(JSON.parse(userData));
-  }, [navigate]);
+  const { user, logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    logout();
     navigate("/login");
   };
-
-  if (!user) {
-    return null;
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
