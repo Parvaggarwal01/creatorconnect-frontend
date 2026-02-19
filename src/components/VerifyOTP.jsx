@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 function VerifyOTP() {
   const navigate = useNavigate();
@@ -92,7 +93,7 @@ function VerifyOTP() {
       // Show success message
       const successDiv = document.createElement("div");
       successDiv.className =
-        "fixed top-4 right-4 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md shadow-md";
+        "fixed top-4 right-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 px-4 py-3 rounded-md shadow-md";
       successDiv.textContent = "OTP resent successfully!";
       document.body.appendChild(successDiv);
       setTimeout(() => successDiv.remove(), 3000);
@@ -104,24 +105,27 @@ function VerifyOTP() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+      <div className="fixed top-4 right-4">
+        <ThemeToggle />
+      </div>
       {showSuccess && (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md shadow-md z-50">
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 px-4 py-3 rounded-md shadow-md z-50">
           ✓ OTP has been sent to your email!
         </div>
       )}
 
-      <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">
+      <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
           Verify Your Email
         </h2>
-        <p className="text-sm text-gray-600 mb-6 text-center">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 text-center">
           We've sent a 6-digit code to{" "}
           <span className="font-medium">{email}</span>
         </p>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-md text-sm">
+          <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-md text-sm">
             {error}
           </div>
         )}
@@ -130,7 +134,7 @@ function VerifyOTP() {
           <div>
             <label
               htmlFor="otp"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
               Enter OTP
             </label>
@@ -144,7 +148,7 @@ function VerifyOTP() {
                 setOtp(value);
                 setError("");
               }}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent outline-none text-center text-2xl tracking-widest"
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-400 focus:border-transparent outline-none text-center text-2xl tracking-widest dark:bg-gray-700 dark:text-white"
               placeholder="000000"
               maxLength="6"
               required
@@ -154,7 +158,7 @@ function VerifyOTP() {
           <button
             type="submit"
             disabled={loading || otp.length !== 6}
-            className="w-full bg-gray-900 text-white py-2 px-4 rounded-md hover:bg-gray-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full bg-gray-900 dark:bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed"
           >
             {loading ? "Verifying..." : "Verify OTP"}
           </button>
@@ -165,7 +169,7 @@ function VerifyOTP() {
             type="button"
             onClick={handleResendOTP}
             disabled={loading}
-            className="text-sm text-gray-600 hover:text-gray-900 disabled:text-gray-400 disabled:cursor-not-allowed"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white disabled:text-gray-400 dark:disabled:text-gray-600 disabled:cursor-not-allowed"
           >
             Didn't receive the code?{" "}
             <span className="font-medium underline">Resend OTP</span>
@@ -175,7 +179,7 @@ function VerifyOTP() {
         <div className="mt-4 text-center">
           <Link
             to="/register"
-            className="text-sm text-gray-600 hover:underline"
+            className="text-sm text-gray-600 dark:text-gray-400 hover:underline dark:hover:text-white"
           >
             ← Back to Register
           </Link>

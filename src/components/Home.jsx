@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import ThemeToggle from "./ThemeToggle";
 
 function Home() {
   const navigate = useNavigate();
@@ -11,24 +12,27 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-gray-200">
+      <nav className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900">
+              <h1 className="text-xl font-bold text-gray-900 dark:text-white">
                 CreatorConnect
               </h1>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600">
+              <ThemeToggle />
+              <span className="text-sm text-gray-600 dark:text-gray-400">
                 Hello,{" "}
-                <span className="font-medium text-gray-900">{user.name}</span>
+                <span className="font-medium text-gray-900 dark:text-white">
+                  {user.name}
+                </span>
               </span>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 text-sm bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
+                className="px-4 py-2 text-sm bg-gray-900 dark:bg-gray-700 text-white rounded-md hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
               >
                 Logout
               </button>
@@ -39,45 +43,49 @@ function Home() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Welcome to CreatorConnect
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 dark:text-gray-400 mb-6">
             You have successfully logged in to your account.
           </p>
 
           {/* User Info Card */}
-          <div className="border border-gray-200 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Account Information
             </h3>
             <div className="space-y-3">
-              <div className="flex border-b border-gray-100 pb-3">
-                <span className="text-sm font-medium text-gray-700 w-24">
+              <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
                   Name:
                 </span>
-                <span className="text-sm text-gray-900">{user.name}</span>
+                <span className="text-sm text-gray-900 dark:text-white">
+                  {user.name}
+                </span>
               </div>
-              <div className="flex border-b border-gray-100 pb-3">
-                <span className="text-sm font-medium text-gray-700 w-24">
+              <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
                   Email:
                 </span>
-                <span className="text-sm text-gray-900">{user.email}</span>
+                <span className="text-sm text-gray-900 dark:text-white">
+                  {user.email}
+                </span>
               </div>
-              <div className="flex border-b border-gray-100 pb-3">
-                <span className="text-sm font-medium text-gray-700 w-24">
+              <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
                   Role:
                 </span>
-                <span className="text-sm text-gray-900 capitalize">
+                <span className="text-sm text-gray-900 dark:text-white capitalize">
                   {user.role}
                 </span>
               </div>
               <div className="flex">
-                <span className="text-sm font-medium text-gray-700 w-24">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
                   User ID:
                 </span>
-                <span className="text-sm text-gray-900 font-mono">
+                <span className="text-sm text-gray-900 dark:text-white font-mono">
                   {user.id}
                 </span>
               </div>
@@ -87,10 +95,10 @@ function Home() {
 
         {/* Features Section */}
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
               <svg
-                className="w-6 h-6 text-gray-900"
+                className="w-6 h-6 text-gray-900 dark:text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -103,16 +111,18 @@ function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Profile</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              Profile
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Manage your profile and personal information
             </p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
               <svg
-                className="w-6 h-6 text-gray-900"
+                className="w-6 h-6 text-gray-900 dark:text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -125,16 +135,18 @@ function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Connections</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              Connections
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Connect with creators and build your network
             </p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
               <svg
-                className="w-6 h-6 text-gray-900"
+                className="w-6 h-6 text-gray-900 dark:text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -147,8 +159,10 @@ function Home() {
                 />
               </svg>
             </div>
-            <h3 className="font-semibold text-gray-900 mb-2">Analytics</h3>
-            <p className="text-sm text-gray-600">
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              Analytics
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Track your performance and engagement
             </p>
           </div>
