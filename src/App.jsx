@@ -14,56 +14,68 @@ import VerifyOTP from "./components/VerifyOTP";
 import Home from "./components/Home";
 import Assets from "./components/Assets";
 import CreateAsset from "./components/CreateAsset";
+import Chat from "./components/Chat";
+import { SocketProvider } from "./context/SocketContext";
 
 function App() {
   return (
     <Router>
       <ThemeProvider>
         <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Navigate to="/login" replace />} />
-            <Route
-              path="/register"
-              element={
-                <PublicRoute>
-                  <Register />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <Login />
-                </PublicRoute>
-              }
-            />
-            <Route path="/verify-otp" element={<VerifyOTP />} />
-            <Route
-              path="/home"
-              element={
-                <ProtectedRoute>
-                  <Home />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/assets"
-              element={
-                <ProtectedRoute>
-                  <Assets />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/assets/create"
-              element={
-                <ProtectedRoute>
-                  <CreateAsset />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
+          <SocketProvider>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" replace />} />
+              <Route
+                path="/register"
+                element={
+                  <PublicRoute>
+                    <Register />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
+                    <Login />
+                  </PublicRoute>
+                }
+              />
+              <Route path="/verify-otp" element={<VerifyOTP />} />
+              <Route
+                path="/home"
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/assets"
+                element={
+                  <ProtectedRoute>
+                    <Assets />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/assets/create"
+                element={
+                  <ProtectedRoute>
+                    <CreateAsset />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/chat"
+                element={
+                  <ProtectedRoute>
+                    <Chat />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </SocketProvider>
         </AuthProvider>
       </ThemeProvider>
     </Router>

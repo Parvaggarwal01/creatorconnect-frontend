@@ -16,6 +16,7 @@ function Layout({ children }) {
     { to: "/home", label: "Dashboard" },
     { to: "/assets", label: "Assets" },
     { to: "/assets/create", label: "Upload Asset" },
+    { to: "/chat", label: "Messages" },
   ];
 
   const isActive = (path) => location.pathname === path;
