@@ -12,6 +12,8 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import VerifyOTP from "./components/VerifyOTP";
 import Home from "./components/Home";
+import Assets from "./components/Assets";
+import CreateAsset from "./components/CreateAsset";
 
 function App() {
   return (
@@ -42,6 +44,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/assets"
+              element={
+                <ProtectedRoute>
+                  <Assets />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/assets/create"
+              element={
+                <ProtectedRoute>
+                  <CreateAsset />
                 </ProtectedRoute>
               }
             />

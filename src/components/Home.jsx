@@ -1,174 +1,143 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import ThemeToggle from "./ThemeToggle";
+import Layout from "./Layout";
 
 function Home() {
-  const navigate = useNavigate();
-  const { user, logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  const { user } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Navigation */}
-      <nav className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-                CreatorConnect
-              </h1>
-            </div>
-            <div className="flex items-center gap-4">
-              <ThemeToggle />
-              <span className="text-sm text-gray-600 dark:text-gray-400">
-                Hello,{" "}
-                <span className="font-medium text-gray-900 dark:text-white">
-                  {user.name}
-                </span>
+    <Layout>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          Welcome to CreatorConnect
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-6">
+          You are successfully logged in to your account.
+        </p>
+
+        {/* User Info Card */}
+        <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            Account Information
+          </h3>
+          <div className="space-y-3">
+            <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
+                Name:
               </span>
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 text-sm bg-gray-900 dark:bg-gray-700 text-white rounded-md hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
-              >
-                Logout
-              </button>
+              <span className="text-sm text-gray-900 dark:text-white">
+                {user.name}
+              </span>
+            </div>
+            <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
+                Email:
+              </span>
+              <span className="text-sm text-gray-900 dark:text-white">
+                {user.email}
+              </span>
+            </div>
+            <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
+                Role:
+              </span>
+              <span className="text-sm text-gray-900 dark:text-white capitalize">
+                {user.role}
+              </span>
+            </div>
+            <div className="flex">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
+                User ID:
+              </span>
+              <span className="text-sm text-gray-900 dark:text-white font-mono">
+                {user.id}
+              </span>
             </div>
           </div>
         </div>
-      </nav>
+      </div>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Welcome to CreatorConnect
-          </h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
-            You have successfully logged in to your account.
+      {/* Features Section */}
+      <div className="grid md:grid-cols-3 gap-6">
+        {/* Profile */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+            <svg
+              className="w-6 h-6 text-gray-900 dark:text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              />
+            </svg>
+          </div>
+          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+            Profile
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            Manage your profile and personal information
           </p>
-
-          {/* User Info Card */}
-          <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-              Account Information
-            </h3>
-            <div className="space-y-3">
-              <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
-                  Name:
-                </span>
-                <span className="text-sm text-gray-900 dark:text-white">
-                  {user.name}
-                </span>
-              </div>
-              <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
-                  Email:
-                </span>
-                <span className="text-sm text-gray-900 dark:text-white">
-                  {user.email}
-                </span>
-              </div>
-              <div className="flex border-b border-gray-100 dark:border-gray-700 pb-3">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
-                  Role:
-                </span>
-                <span className="text-sm text-gray-900 dark:text-white capitalize">
-                  {user.role}
-                </span>
-              </div>
-              <div className="flex">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-400 w-24">
-                  User ID:
-                </span>
-                <span className="text-sm text-gray-900 dark:text-white font-mono">
-                  {user.id}
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
 
-        {/* Features Section */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
-              <svg
-                className="w-6 h-6 text-gray-900 dark:text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-              Profile
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Manage your profile and personal information
-            </p>
+        {/* Assets */}
+        <Link
+          to="/assets"
+          className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow group"
+        >
+          <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+            <svg
+              className="w-6 h-6 text-gray-900 dark:text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
           </div>
+          <h3 className="font-semibold text-gray-900 dark:text-white mb-2 group-hover:underline">
+            Assets
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Browse, upload and manage creative assets
+          </p>
+        </Link>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
-              <svg
-                className="w-6 h-6 text-gray-900 dark:text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-              Connections
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Connect with creators and build your network
-            </p>
+        {/* Analytics */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+          <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+            <svg
+              className="w-6 h-6 text-gray-900 dark:text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              />
+            </svg>
           </div>
-
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-            <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
-              <svg
-                className="w-6 h-6 text-gray-900 dark:text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                />
-              </svg>
-            </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-              Analytics
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Track your performance and engagement
-            </p>
-          </div>
+          <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+            Analytics
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Track your performance and engagement
+          </p>
         </div>
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 }
 
